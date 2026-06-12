@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ITLA - Iniciar Sesión</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: radial-gradient(ellipse at 70% 40%, #1a4a9e 0%, #0a1f6e 40%, #050d3a 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Grid de puntos del fondo */
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle, rgba(100,160,255,0.18) 1px, transparent 1px);
+      background-size: 38px 38px;
+      pointer-events: none;
+    }
+
+    /* Líneas diagonales decorativas */
+    .bg-lines {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .bg-lines span {
+      position: absolute;
+      display: block;
+      width: 2px;
+      height: 220px;
+      background: linear-gradient(to bottom, transparent, rgba(80,140,255,0.25), transparent);
+      transform-origin: top center;
+    }
+    .bg-lines span:nth-child(1) { left: 8%; top: 20%; transform: rotate(-30deg); }
+    .bg-lines span:nth-child(2) { left: 15%; top: 55%; transform: rotate(-25deg); height: 160px; }
+    .bg-lines span:nth-child(3) { right: 10%; top: 10%; transform: rotate(30deg); }
+    .bg-lines span:nth-child(4) { right: 18%; top: 60%; transform: rotate(25deg); height: 140px; }
+
+    /* Building image hint (right side glow) */
+    .glow-right {
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: 45%;
+      background: radial-gradient(ellipse at right center, rgba(30,90,200,0.35) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Card */
+    .card {
+      position: relative;
+      background: #ffffff;
+      border-radius: 6px;
+      padding: 48px 52px 44px;
+      width: 100%;
+      max-width: 460px;
+      box-shadow: 0 8px 48px rgba(0,0,0,0.45);
+      z-index: 10;
+    }
+
+    .logo-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 36px;
+    }
+
+    /* SVG logo replica */
+    .logo-wrap svg {
+      width: 180px;
+      height: auto;
+    }
+
+    .field {
+      width: 100%;
+      border: 1.5px solid #c8d2e0;
+      border-radius: 4px;
+      padding: 14px 16px;
+      font-size: 15px;
+      color: #333;
+      outline: none;
+      transition: border-color 0.2s;
+      margin-bottom: 14px;
+      background: #fff;
+    }
+    .field:focus { border-color: #1c3d8f; }
+    .field::placeholder { color: #aab0bb; }
+
+    .btn-login {
+      display: inline-block;
+      background: #1c3d8f;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 14px 28px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 4px;
+      transition: background 0.2s;
+    }
+    .btn-login:hover { background: #163070; }
+
+    .forgot {
+      display: block;
+      margin: 16px 0 20px;
+      font-size: 13.5px;
+      color: #555;
+      text-decoration: none;
+    }
+    .forgot:hover { text-decoration: underline; }
+
+    .btn-office {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      border: 1.5px solid #c8d2e0;
+      border-radius: 4px;
+      padding: 12px 16px;
+      background: #fff;
+      font-size: 14px;
+      color: #333;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-office:hover { background: #f5f7fb; }
+
+    /* Microsoft icon */
+    .ms-icon {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      width: 18px; height: 18px;
+    }
+    .ms-icon span {
+      display: block;
+      width: 8px; height: 8px;
+      border-radius: 1px;
+    }
+    .ms-r { background: #f25022; }
+    .ms-g { background: #7fba00; }
+    .ms-b { background: #00a4ef; }
+    .ms-y { background: #ffb900; }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 28px;
+      font-size: 12.5px;
+      color: #888;
+    }
+    .footer-links select {
+      border: none;
+      background: transparent;
+      font-size: 12.5px;
+      color: #888;
+      cursor: pointer;
+    }
+    .footer-links button {
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      background: #f0f0f0;
+      padding: 3px 10px;
+      font-size: 12.5px;
+      color: #555;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-lines">
+    <span></span><span></span><span></span><span></span>
+  </div>
+  <div class="glow-right"></div>
+
+  <div class="card">
+    <!-- Logo ITLA SVG -->
+    <div class="logo-wrap">
+      <svg viewBox="0 0 260 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Letras ITLA -->
+        <text x="28" y="72" font-family="'Times New Roman', serif" font-size="78"
+              font-style="italic" font-weight="bold" fill="#1c3d8f" letter-spacing="-2">ITLA</text>
+        <!-- Línea roja -->
+        <rect x="28" y="80" width="80" height="5" rx="2" fill="#cc1a1a"/>
+        <!-- Arco azul -->
+        <path d="M 90 85 Q 155 115 210 75" stroke="#1c3d8f" stroke-width="4"
+              fill="none" stroke-linecap="round"/>
+        <!-- Punto del arco -->
+        <circle cx="210" cy="75" r="5" fill="#1c3d8f"/>
+      </svg>
+    </div>
+
+    <input class="field" type="text"     id="user" placeholder="Nombre de usuario" autocomplete="off" />
+    <input class="field" type="password" id="pass" placeholder="Contraseña"        autocomplete="off" />
+
+    <button class="btn-login" onclick="capture()">Acceder</button>
+
+    <a href="#" class="forgot">¿Olvidó su contraseña?</a>
+
+    <button class="btn-office">
+      <span class="ms-icon">
+        <span class="ms-r"></span><span class="ms-g"></span>
+        <span class="ms-b"></span><span class="ms-y"></span>
+      </span>
+      Iniciar sesión con Office 365
+    </button>
+
+    <div class="footer-links">
+      <select><option>Español - Internacional (es)</option></select>
+      <span>|</span>
+      <button>Aviso de Cookies</button>
+    </div>
+  </div>
+
+  <script>
+    function capture() {
+      const user = document.getElementById('user').value;
+      const pass = document.getElementById('pass').value;
+      // En un escenario real el atacante captura las credenciales aquí
+      // Para el lab: redirigir al sitio real después de "intentar login"
+      if (user || pass) {
+        document.querySelector('.card').innerHTML =
+          '<div style="text-align:center;padding:40px 20px">' +
+          '<p style="color:#c00;font-size:16px;font-weight:bold">Nombre de usuario o contraseña incorrectos.</p>' +
+          '<p style="color:#555;margin-top:12px;font-size:14px">Inténtelo de nuevo.</p>' +
+          '</div>';
+      }
+    }
+    document.addEventListener('keydown', e => { if(e.key === 'Enter') capture(); });
+  </script>
+</body>
+</html>
