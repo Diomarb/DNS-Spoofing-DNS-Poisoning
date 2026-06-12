@@ -146,12 +146,19 @@ Víctima ingresa credenciales → Capturadas en server.py
 
 ---
 IOU1# configure terminal
+
 IOU1(config)# ip dhcp snooping
+
 IOU1(config)# ip dhcp snooping vlan 1
+
 IOU1(config)# ip arp inspection vlan 1
+
 IOU1(config)# interface ethernet 0/2
+
 IOU1(config-if)# ip dhcp snooping trust
+
 IOU1(config-if)# ip arp inspection trust
+
 IOU1(config-if)# exit
 
 
