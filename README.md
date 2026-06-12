@@ -2,7 +2,7 @@
 
 > **Laboratorio de Seguridad de Redes — Ataque #3**  
 > Instituto Tecnológico de las Américas (ITLA) | Matrícula: 2024-1185
-
+📺 Video de demostración: https://youtu.be/NIgcoQYQNOc  
 ---
 
 ## 📋 Descripción
@@ -132,11 +132,11 @@ Víctima ingresa credenciales → Capturadas en server.py
 
 ##  Demostración
 
-> 📺 Video de demostración: 
+> Video de demostración: https://youtu.be/NIgcoQYQNOc  
 
 ---
 
-## 🛡️ Contramedidas
+## Contramedidas
 
 | Ataque | Contramedida |
 |--------|-------------|
