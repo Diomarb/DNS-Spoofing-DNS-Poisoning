@@ -1,4 +1,4 @@
-# 🎯 DNS Spoofing / DNS Poisoning Attack Lab
+# DNS Spoofing / DNS Poisoning Attack Lab
 
 > **Laboratorio de Seguridad de Redes — Ataque #3**  
 > Instituto Tecnológico de las Américas (ITLA) | Matrícula: 2024-1185
@@ -9,18 +9,7 @@
 
 Demostración del ataque **DNS Spoofing combinado con ARP MitM** sobre una red simulada en GNS3. El ataque envenena la tabla ARP de la víctima para interceptar su tráfico DNS y redirigir el dominio `itla.edu.do` hacia una página de login falsa controlada por el atacante, logrando capturar credenciales.
 
----
-
-## 🗂️ Estructura del Repositorio
-
-```
-dns-spoofing/
-├── arp_poison.py      # Script de envenenamiento ARP (MitM)
-├── dns_spoof.py       # Script de DNS Spoofing (intercepta queries DNS)
-├── server.py          # Servidor Flask con portal de login falso
-├── index.html         # Réplica visual del portal de login de ITLA
-└── README.md
-```
+--
 
 ---
 
@@ -37,6 +26,11 @@ dns-spoofing/
              10.11.85.1
               (Gateway)
 ```
+
+
+<img width="269" height="277" alt="image" src="https://github.com/user-attachments/assets/77ac1318-4162-4ea0-9ac8-a3e6c9a60990" />
+
+
 
 | Dispositivo    | Rol        | IP            | Interfaz |
 |----------------|------------|---------------|----------|
@@ -85,38 +79,38 @@ ip route add default via 10.11.85.1
 echo "nameserver 10.11.85.1" > /etc/resolv.conf
 ```
 
-### 4. Clonar el repositorio en Kali
-```bash
-git clone https://github.com/TU_USUARIO/dns-spoofing.git
-cd dns-spoofing
-```
-
-### 5. Ejecutar los 3 scripts (en terminales separadas)
+### 4. Ejecutar los 3 scripts (en terminales separadas)
 
 **Terminal 1 — Servidor web falso:**
 ```bash
 sudo python3 server.py
 ```
 
+<img width="324" height="89" alt="Captura de pantalla 2026-06-12 164448" src="https://github.com/user-attachments/assets/4f691f23-7aa8-4ef5-aed0-23a3bdcde4be" />
+
 **Terminal 2 — DNS Spoofer:**
 ```bash
 sudo python3 dns_spoof.py
 ```
 
+<img width="417" height="182" alt="Captura de pantalla 2026-06-12 164512" src="https://github.com/user-attachments/assets/21ebcedd-5f78-4473-864b-bccc9c634433" />
+
 **Terminal 3 — ARP Poisoning:**
 ```bash
 sudo python3 arp_poison.py
 ```
+<img width="424" height="188" alt="Captura de pantalla 2026-06-12 164537" src="https://github.com/user-attachments/assets/7b001a89-0802-4b85-a8ff-3fdd128d6b34" />
 
 ### 6. Demostrar el ataque
 En el navegador de WebTerm ingresar:
 ```
 http://itla.edu.do
 ```
+<img width="513" height="386" alt="Captura de pantalla 2026-06-12 164559" src="https://github.com/user-attachments/assets/07be2649-7993-40f2-b251-18ab2660c14c" />
 
 ---
 
-## 🔄 Flujo del Ataque
+## Flujo del Ataque
 
 ```
 WebTerm consulta itla.edu.do
@@ -136,9 +130,9 @@ Víctima ingresa credenciales → Capturadas en server.py
 
 ---
 
-## 📸 Demostración
+##  Demostración
 
-> 📺 Video de demostración: [Ver en YouTube](https://youtube.com/TU_ENLACE)
+> 📺 Video de demostración: 
 
 ---
 
@@ -151,16 +145,14 @@ Víctima ingresa credenciales → Capturadas en server.py
 | Phishing | HTTPS + certificados válidos, MFA, capacitación a usuarios |
 
 ---
+IOU1# configure terminal
+IOU1(config)# ip dhcp snooping
+IOU1(config)# ip dhcp snooping vlan 1
+IOU1(config)# ip arp inspection vlan 1
+IOU1(config)# interface ethernet 0/2
+IOU1(config-if)# ip dhcp snooping trust
+IOU1(config-if)# ip arp inspection trust
+IOU1(config-if)# exit
 
-## ⚠️ Aviso Legal
 
-Este laboratorio fue desarrollado con fines **exclusivamente educativos** en un entorno controlado y simulado (GNS3). El uso de estas técnicas fuera de un entorno de laboratorio autorizado es ilegal y contrario a la ética profesional.
 
----
-
-## 👤 Autor
-
-**Estudiante:** Eunice  
-**Matrícula:** 2024-1185  
-**Institución:** Instituto Tecnológico de las Américas (ITLA)  
-**Curso:** Seguridad de Redes
